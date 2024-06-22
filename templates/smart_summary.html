@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Summary - Learning Diary for Business Consultant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container wide">
+        <h1>Smart Summary</h1>
+        
+        <form action="{{ url_for('save_summary') }}" method="POST">
+            <div class="entry-section">
+                <h3>질문에 대한 답변</h3>
+                <ol>
+                    {% for question in questions %}
+                        <li>
+                            <div>{{ question }}</div>
+                            <input type="hidden" name="questions" value="{{ question }}">
+                            <div class="response">{{ responses.answers[loop.index0] }}</div>
+                            <input type="hidden" name="questions_responses" value="{{ responses.answers[loop.index0] }}">
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+            
+            <div class="entry-section">
+                <h3>관련 뉴스기사</h3>
+                <ol>
+                    {% for keyword in keywords %}
+                        <li>
+                            <div>{{ keyword }}</div>
+                            <input type="hidden" name="keywords" value="{{ keyword }}">
+                            <div class="response">{{ responses.news[loop.index0] }}</div>
+                            <input type="hidden" name="news_responses" value="{{ responses.news[loop.index0] }}">
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+
+            <div class="entry-section">
+                <h3>내일 할 일에 대한 조언</h3>
+                <ol>
+                    {% for task in tomorrow_tasks %}
+                        <li>
+                            <div>{{ task }}</div>
+                            <input type="hidden" name="tomorrow" value="{{ task }}">
+                            <div class="response">{{ responses.advice[loop.index0] }}</div>
+                            <input type="hidden" name="advice_responses" value="{{ responses.advice[loop.index0] }}">
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+
+            <div class="button-section">
+                <button class="btn-secondary" type="submit">저장하기</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

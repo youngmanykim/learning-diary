@@ -12,7 +12,7 @@
         <h1>Learning Diary for Business Consultant</h1>
         <h2 id="date">{{ today }}</h2>
         
-        <form action="{{ url_for('save') }}" method="POST">
+        <form action="{{ url_for('save') }}" method="POST" id="diary-form">
             <div class="entry-section">
                 <h3>업무 내용</h3>
                 <input type="text" id="task-input" class="entry-input">
@@ -50,9 +50,16 @@
 
             <div class="button-section">
                 <button class="btn-secondary" type="submit">저장하기</button>
-                <button class="btn-primary" type="button">똑똑하게 정리하기</button>
+                <button class="btn-primary" type="button" onclick="submitSmartSummary()">똑똑하게 정리하기</button>
             </div>
         </form>
     </div>
+    <script>
+        function submitSmartSummary() {
+            const form = document.getElementById('diary-form');
+            form.action = "{{ url_for('smart_summary') }}";
+            form.submit();
+        }
+    </script>
 </body>
 </html>
