@@ -4,8 +4,8 @@ body {
   padding: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  align-items: flex-start; /* 상단 여백을 확보하기 위해 flex-start로 변경 */
+  min-height: 100vh;
   background-color: #00338D; /* KPMG 어두운 파란색 */
   color: #ffffff; /* 흰색 글자 */
 }
@@ -16,6 +16,11 @@ body {
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px; /* 상단 여백 추가 */
+}
+
+.container.wide {
+  width: 80%; /* 더 넓은 컨테이너 */
 }
 
 h1, h2, h3 {
@@ -25,6 +30,21 @@ h1, h2, h3 {
 
 .entry-section {
   margin-top: 20px;
+  text-align: left; /* 왼쪽 정렬 */
+}
+
+.entry-section ol {
+  list-style-type: decimal; /* 넘버링 */
+  margin-left: 20px; /* 왼쪽 여백 */
+  color: #ffffff; /* 흰색 글자 */
+}
+
+.entry-section ol li {
+  background-color: #ffffff;
+  color: #005EB8;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
 }
 
 .entry-input {
@@ -76,16 +96,41 @@ h1, h2, h3 {
 }
 
 .btn-secondary {
-  background-color: #005EB8; /* KPMG 블루 */
+  background-color: #004494; /* 기존보다 어두운 KPMG 블루 */
   color: #ffffff; /* 흰색 */
 }
 
 .btn-secondary:hover {
-  background-color: #004494;
+  background-color: #00338D;
   color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .button-section {
   margin-top: 20px;
+}
+
+.history-list {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+}
+
+.history-list li {
+  background-color: #ffffff;
+  color: #005EB8;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.history-list li a {
+  color: #005EB8;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.history-list li a:hover {
+  color: #00338D;
 }

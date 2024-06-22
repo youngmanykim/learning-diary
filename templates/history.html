@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - Learning Diary for Business Consultant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>History</h1>
+        <ul class="history-list">
+            {% for entry in history %}
+                <li><a href="{{ url_for('entry', entry_id=loop.index0) }}">{{ entry.date }}</a></li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('main') }}" class="btn-primary">메인으로 돌아가기</a>
+    </div>
+</body>
+</html>

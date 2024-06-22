@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entry - Learning Diary for Business Consultant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container wide">
+        <h1>Entry Details</h1>
+        <h2>{{ entry.date }}</h2>
+        
+        <div class="entry-section">
+            <h3>업무 내용</h3>
+            <ol>
+                {% for item in entry.tasks %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+        
+        <div class="entry-section">
+            <h3>배운점</h3>
+            <ol>
+                {% for item in entry.learned %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+
+        <div class="entry-section">
+            <h3>질문할 점(혹은 모르는 것)</h3>
+            <ol>
+                {% for item in entry.questions %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+
+        <div class="entry-section">
+            <h3>키워드</h3>
+            <ol>
+                {% for item in entry.keywords %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+
+        <div class="entry-section">
+            <h3>내일 할 일</h3>
+            <ol>
+                {% for item in entry.tomorrow %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+
+        <a href="{{ url_for('history') }}" class="btn-primary">히스토리로 돌아가기</a>
+    </div>
+</body>
+</html>
