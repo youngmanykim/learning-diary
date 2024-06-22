@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # 환경 변수 로드
 load_dotenv()
-openai.api_key = os.getenv('OPENAI_API_KEY')
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # OpenAI API 호출 함수
 def get_gpt_response(questions, keywords, tomorrow_tasks):
