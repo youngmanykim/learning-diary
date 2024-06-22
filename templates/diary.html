@@ -11,33 +11,45 @@
     <div class="container">
         <h1>Learning Diary for Business Consultant</h1>
         <h2 id="date">{{ today }}</h2>
-
+        
         <div class="entry-section">
             <h3>업무 내용</h3>
             <input type="text" id="task-input" class="entry-input">
             <button onclick="addEntry('task')">추가</button>
-            <ul id="task-list" class="entry-list"></ul>
+            <ol id="task-list" class="entry-list"></ol>
         </div>
-
+        
         <div class="entry-section">
             <h3>배운점</h3>
             <input type="text" id="learned-input" class="entry-input">
             <button onclick="addEntry('learned')">추가</button>
-            <ul id="learned-list" class="entry-list"></ul>
+            <ol id="learned-list" class="entry-list"></ol>
         </div>
 
         <div class="entry-section">
             <h3>질문할 점(혹은 모르는 것)</h3>
             <input type="text" id="questions-input" class="entry-input">
             <button onclick="addEntry('questions')">추가</button>
-            <ul id="questions-list" class="entry-list"></ul>
+            <ol id="questions-list" class="entry-list"></ol>
         </div>
 
         <div class="entry-section">
             <h3>키워드</h3>
             <input type="text" id="keywords-input" class="entry-input">
             <button onclick="addEntry('keywords')">추가</button>
-            <ul id="keywords-list" class="entry-list"></ul>
+            <ol id="keywords-list" class="entry-list"></ol>
+        </div>
+
+        <div class="entry-section">
+            <h3>내일 할 일</h3>
+            <input type="text" id="tomorrow-input" class="entry-input">
+            <button onclick="addEntry('tomorrow')">추가</button>
+            <ol id="tomorrow-list" class="entry-list"></ol>
+        </div>
+
+        <div class="button-section">
+            <button class="btn-secondary">저장하기</button>
+            <button class="btn-primary">똑똑하게 정리하기</button>
         </div>
     </div>
 </body>

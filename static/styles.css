@@ -36,8 +36,11 @@ h1, h2, h3 {
 }
 
 .entry-list {
-  list-style-type: none;
+  list-style-type: decimal;
   padding: 0;
+  text-align: left;
+  margin-left: 10%;
+  color: #ffffff; /* 흰색 글자 */
 }
 
 .entry-list li {
@@ -48,10 +51,8 @@ h1, h2, h3 {
   border-radius: 5px;
 }
 
-.btn-primary {
+.btn-primary, .btn-secondary {
   display: inline-block;
-  background-color: #ffffff; /* 흰색 */
-  color: #005EB8; /* KPMG 블루 */
   padding: 15px 30px;
   text-decoration: none;
   border-radius: 5px;
@@ -59,11 +60,32 @@ h1, h2, h3 {
   font-weight: bold; /* bold 처리 */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-  margin: 10px 0; /* 버튼 사이의 간격 */
+  margin: 10px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #ffffff; /* 흰색 */
+  color: #005EB8; /* KPMG 블루 */
 }
 
 .btn-primary:hover {
   background-color: #004494;
   color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+  background-color: #005EB8; /* KPMG 블루 */
+  color: #ffffff; /* 흰색 */
+}
+
+.btn-secondary:hover {
+  background-color: #004494;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.button-section {
+  margin-top: 20px;
 }
