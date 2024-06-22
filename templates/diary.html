@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Diary for Business Consultant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='diary.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Learning Diary for Business Consultant</h1>
+        <h2 id="date">{{ today }}</h2>
+
+        <div class="entry-section">
+            <h3>업무 내용</h3>
+            <input type="text" id="task-input" class="entry-input">
+            <button onclick="addEntry('task')">추가</button>
+            <ul id="task-list" class="entry-list"></ul>
+        </div>
+
+        <div class="entry-section">
+            <h3>배운점</h3>
+            <input type="text" id="learned-input" class="entry-input">
+            <button onclick="addEntry('learned')">추가</button>
+            <ul id="learned-list" class="entry-list"></ul>
+        </div>
+
+        <div class="entry-section">
+            <h3>질문할 점(혹은 모르는 것)</h3>
+            <input type="text" id="questions-input" class="entry-input">
+            <button onclick="addEntry('questions')">추가</button>
+            <ul id="questions-list" class="entry-list"></ul>
+        </div>
+
+        <div class="entry-section">
+            <h3>키워드</h3>
+            <input type="text" id="keywords-input" class="entry-input">
+            <button onclick="addEntry('keywords')">추가</button>
+            <ul id="keywords-list" class="entry-list"></ul>
+        </div>
+    </div>
+</body>
+</html>
