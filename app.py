@@ -1,16 +1,57 @@
+import os
+from dotenv import load_dotenv
+import openai
 from flask import Flask, render_template, request, redirect, url_for
 from datetime import datetime
 import json
 
 app = Flask(__name__)
 
-# Fake GPT response and news articles for demonstration
-def fake_gpt_response(questions, keywords, tomorrow_tasks):
+# 환경 변수 로드
+load_dotenv()
+openai.api_key = os.getenv('OPENAI_API_KEY')
+
+# OpenAI API 호출 함수
+def get_gpt_response(questions, keywords, tomorrow_tasks):
     responses = {
-        "answers": [f"Answer to {question}" for question in questions],
-        "news": [f"News article related to {keyword}" for keyword in keywords],
-        "advice": [f"Advice for {task}" for task in tomorrow_tasks]
+        "answers": [],
+        "news": [],
+        "advice": []
     }
+
+    # 질문에 대한 답변
+    for question in questions:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": f"Q: {question}\nA:"}
+            ]
+        )
+        responses["answers"].append(response.choices[0].message['content'].strip())
+
+    # 키워드에 관련된 뉴스기사 (모의 데이터)
+    for keyword in keywords:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": f"Find three recent news articles related to {keyword}."}
+            ]
+        )
+        responses["news"].append(response.choices[0].message['content'].strip())
+
+    # 내일 할 일에 대한 조언
+    for task in tomorrow_tasks:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": f"Give me some advice for the task: {task}"}
+            ]
+        )
+        responses["advice"].append(response.choices[0].message['content'].strip())
+
     return responses
 
 @app.route('/')
@@ -75,13 +116,15 @@ def entry(entry_id):
 
 @app.route('/smart_summary', methods=['POST'])
 def smart_summary():
+    tasks = request.form.getlist('task')
+    learned = request.form.getlist('learned')
     questions = request.form.getlist('questions')
     keywords = request.form.getlist('keywords')
     tomorrow_tasks = request.form.getlist('tomorrow')
 
-    responses = fake_gpt_response(questions, keywords, tomorrow_tasks)
+    responses = get_gpt_response(questions, keywords, tomorrow_tasks)
 
-    return render_template('smart_summary.html', questions=questions, keywords=keywords, tomorrow_tasks=tomorrow_tasks, responses=responses)
+    return render_template('smart_summary.html', tasks=tasks, learned=learned, questions=questions, keywords=keywords, tomorrow_tasks=tomorrow_tasks, responses=responses)
 
 @app.route('/save_summary', methods=['POST'])
 def save_summary():

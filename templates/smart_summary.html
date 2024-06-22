@@ -12,6 +12,30 @@
         
         <form action="{{ url_for('save_summary') }}" method="POST">
             <div class="entry-section">
+                <h3>업무 내용</h3>
+                <ol>
+                    {% for task in tasks %}
+                        <li>
+                            <div>{{ task }}</div>
+                            <input type="hidden" name="tasks" value="{{ task }}">
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+
+            <div class="entry-section">
+                <h3>배운점</h3>
+                <ol>
+                    {% for learned in learned %}
+                        <li>
+                            <div>{{ learned }}</div>
+                            <input type="hidden" name="learned" value="{{ learned }}">
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+
+            <div class="entry-section">
                 <h3>질문에 대한 답변</h3>
                 <ol>
                     {% for question in questions %}
