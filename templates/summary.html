@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하루 정리하기</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">퇴근 5분 전</a>
+    </div>
+    <div class="container">
+        <h1 class="title">하루 정리하기</h1>
+        <p id="current-time" class="bold-text"></p>
+        <form id="summary-form" method="post">
+            <div class="input-group">
+                <label for="main-task" class="bold-text">메인 업무내용</label>
+                <div class="input-wrapper">
+                    <input type="text" id="main-task" name="main-task" placeholder="ex. K사 신사업 전략 제안서 작성 및 피드백 반영 작업">
+                    <button type="button" class="add-button" onclick="addEntry('main-task')">추가</button>
+                </div>
+                <ul id="main-task-list"></ul>
+            </div>
+            <div class="input-group">
+                <label for="learning" class="bold-text">배운점(배울점)</label>
+                <div class="input-wrapper">
+                    <input type="text" id="learning" name="learning" placeholder="ex. 상무님, PM님에게 나의 의견을 말할 때는 '선 긍정, 후 추가제안' 방법을 활용한다.">
+                    <button type="button" class="add-button" onclick="addEntry('learning')">추가</button>
+                </div>
+                <ul id="learning-list"></ul>
+            </div>
+            <div class="input-group">
+                <label for="special-notes" class="bold-text">특이사항</label>
+                <div class="input-wrapper">
+                    <input type="text" id="special-notes" name="special-notes" placeholder="ex. 프로젝트 최종보고 강남역 한우 회식(with. W팀)">
+                    <button type="button" class="add-button" onclick="addEntry('special-notes')">추가</button>
+                </div>
+                <ul id="special-notes-list"></ul>
+            </div>
+            <div class="input-group">
+                <label for="tomorrow-task" class="bold-text">내일 할 일</label>
+                <div class="input-wrapper">
+                    <input type="text" id="tomorrow-task" name="tomorrow-task" placeholder="ex. 신사업 환경분석 프레임워크 리서치 및 구조화">
+                    <button type="button" class="add-button" onclick="addEntry('tomorrow-task')">추가</button>
+                </div>
+                <ul id="tomorrow-task-list"></ul>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="main-button">하루 저장하기</button>
+                <button type="button" class="secondary-button" onclick="window.location.href='/history'">히스토리로 이동하기</button>
+            </div>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='summary.js') }}"></script>
+</body>
+</html>

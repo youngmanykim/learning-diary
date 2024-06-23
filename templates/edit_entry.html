@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학습일지 수정</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">퇴근 5분 전</a>
+    </div>
+    <div class="container">
+        <h1 class="title">학습일지 수정</h1>
+        <form id="edit-form" method="post">
+            <div class="input-group">
+                <label for="main-task" class="bold-text">메인 업무내용</label>
+                <div class="input-wrapper">
+                    <input type="text" id="main-task" name="main-task" placeholder="메인 업무내용을 입력하세요">
+                    <button type="button" class="add-button" onclick="addEntry('main-task')">추가</button>
+                </div>
+                <ul id="main-task-list">
+                    {% for item in entry.main_task %}
+                        <li><input type="text" name="main-task" value="{{ item }}" class="input-field"></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="input-group">
+                <label for="learning" class="bold-text">배운점(배울점)</label>
+                <div class="input-wrapper">
+                    <input type="text" id="learning" name="learning" placeholder="배운점을 입력하세요">
+                    <button type="button" class="add-button" onclick="addEntry('learning')">추가</button>
+                </div>
+                <ul id="learning-list">
+                    {% for item in entry.learning %}
+                        <li><input type="text" name="learning" value="{{ item }}" class="input-field"></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="input-group">
+                <label for="special-notes" class="bold-text">특이사항</label>
+                <div class="input-wrapper">
+                    <input type="text" id="special-notes" name="special-notes" placeholder="특이사항을 입력하세요">
+                    <button type="button" class="add-button" onclick="addEntry('special-notes')">추가</button>
+                </div>
+                <ul id="special-notes-list">
+                    {% for item in entry.special_notes %}
+                        <li><input type="text" name="special-notes" value="{{ item }}" class="input-field"></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="input-group">
+                <label for="tomorrow-task" class="bold-text">내일 할 일</label>
+                <div class="input-wrapper">
+                    <input type="text" id="tomorrow-task" name="tomorrow-task" placeholder="내일 할 일을 입력하세요">
+                    <button type="button" class="add-button" onclick="addEntry('tomorrow-task')">추가</button>
+                </div>
+                <ul id="tomorrow-task-list">
+                    {% for item in entry.tomorrow_task %}
+                        <li><input type="text" name="tomorrow-task" value="{{ item }}" class="input-field"></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="button-group-vertical">
+                <button type="submit" class="main-button">수정 내용 저장하기</button>
+                <button type="button" class="secondary-button" onclick="window.location.href='{{ url_for('entry_detail', index=index) }}'">취소</button>
+            </div>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='summary.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>히스토리</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">퇴근 5분 전</a>
+    </div>
+    <div class="container">
+        <h1 class="title">히스토리</h1>
+        <div class="history-list">
+            {% for entry in entries %}
+                <button class="history-button" onclick="window.location.href='{{ url_for('entry_detail', index=loop.index0) }}'">{{ entry.timestamp }}</button>
+            {% endfor %}
+        </div>
+        <div class="button-group-vertical" style="margin-top: 20px;">
+            <button class="main-button" onclick="window.location.href='{{ url_for('home') }}'">메인화면으로 돌아가기</button>
+            <button class="secondary-button" onclick="window.location.href='mailto:youngmanykim@gmail.com'">PDF 파일로 내보내기</button>
+            <button class="lab-button" onclick="window.location.href='mailto:youngmanykim@gmail.com'">링크 공유하기</button>
+        </div>
+    </div>
+</body>
+</html>
