@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실험실</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">퇴근 5분 전</a>
+    </div>
+    <div class="container">
+        <h1 class="title">실험실</h1>
+        <p class="description">퇴근 5분 전 서비스는 이렇게 발전해왔습니다.</p>
+        
+        <div class="update-history">
+            <ul>
+                {% for update in updates %}
+                <li><strong>{{ update.date }}:</strong> {{ update.description }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <hr>
+        <div class="update-form">
+            <h2>업데이트 내용 추가</h2>
+            <form id="update-form" action="/add_update" method="post">
+                <textarea id="update-description" name="update_description" rows="4" required></textarea>
+                <div class="button-group">
+                    <button type="submit" class="main-button">업데이트 내용 추가</button>
+                    <a href="/" class="secondary-button">메인화면으로 돌아가기</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('update-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var description = document.getElementById('update-description').value;
+            var formData = new FormData();
+            formData.append('update_description', description);
+            
+            fetch('/add_update', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                var updateHistory = document.querySelector('.update-history ul');
+                var newUpdate = document.createElement('li');
+                newUpdate.innerHTML = `<strong>${data.date}:</strong> ${data.description}`;
+                updateHistory.insertBefore(newUpdate, updateHistory.firstChild);
+                document.getElementById('update-description').value = '';
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
