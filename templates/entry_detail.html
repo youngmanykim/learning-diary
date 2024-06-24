@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학습일지 상세</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">퇴근 5분 전</a>
+    </div>
+    <div class="container">
+        <h1 class="title">학습일지 상세</h1>
+        <p class="bold-text"><strong>날짜:</strong> {{ entry.timestamp }}</p>
+        
+        <div class="detail-group">
+            <h2 class="detail-title">메인 업무내용:</h2>
+            <ul class="detail-list">
+                {% for item in entry.main_task %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="detail-group">
+            <h2 class="detail-title">배운점(배울점):</h2>
+            <ul class="detail-list">
+                {% for item in entry.learning %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="detail-group">
+            <h2 class="detail-title">특이사항:</h2>
+            <ul class="detail-list">
+                {% for item in entry.special_notes %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="detail-group">
+            <h2 class="detail-title">내일 할 일:</h2>
+            <ul class="detail-list">
+                {% for item in entry.tomorrow_task %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="button-group">
+            <button class="main-button" onclick="window.location.href='{{ url_for('edit_entry', index=index) }}'">정리 내용 수정하기</button>
+            <button class="secondary-button" onclick="window.location.href='{{ url_for('history') }}'">히스토리로 돌아가기</button>
+            <button class="main-button">PDF 파일로 내보내기</button>
+            <button class="secondary-button">링크 공유하기</button>
+        </div>
+    </div>
+</body>
+</html>

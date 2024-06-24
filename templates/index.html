@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퇴근 5분 전</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">퇴근 5분 전</a>
+    </div>
+    <div class="container">
+        <h1 class="title">퇴근 5분 전</h1>
+        <img src="{{ url_for('static', filename='thetrumanshow.png') }}" alt="Truman Show Image" class="main-image">
+        <div class="button-group-vertical">
+            <button class="main-button" onclick="window.location.href='/summary'">하루 정리하기</button>
+            <button class="secondary-button" onclick="window.location.href='/history'">히스토리 돌아보기</button>
+            <button class="lab-button" onclick="window.location.href='/lab'">실험실</button>
+        </div>
+        <p class="usage-info">지금까지 <b><u>{{ visit_count }}</u></b>명이 사용하고 있으며,<br> 치열했던 <b><u>{{ visit_count + interaction_count }}</u></b>일의 히스토리가 정리되어 있습니다.</p>
+        <p class="report-issue">* 오류 제보: <a href="mailto:youngmanykim@gmail.com">youngmanykim@gmail.com</a></p>
+    </div>
+</body>
+</html>
